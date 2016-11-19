@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>Bit Bubble - the game</title>
+    <link rel="stylesheet" type="text/css" href="build/game.css"/>
+    <meta name="viewport" content="width=520,user-scalable=no,initial-scale=1">
+</head>
+<body>
+    <div class="gameContainer">
+        <div class="header">
+            <div class="nameAndDescription">
+                <div class="first">
+                    <div class="name">Bit Bubble</div>
+                    <div class="right_options">
+                        <select class="level levelselect" onchange="resizeGrid(this.value);">
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                        </select>
+                        <button class="newGame">New Game</button>
+                    </div>
+                </div>
+                <div class="desc">
+                    <div class="d">Enjoy forking the bubbles !</div>
+                </div>
+            </div>
+            <div class="gameActions">
+                <div class="scores">
+                    <div class="currentScoreContainer">
+                        <div>SCORE</div>
+                        <div class="currentScore"></div>
+                        <div class="currentScoreAnimator"></div>
+                    </div>
+                    <div class="bestScoreContainer">
+                        <div>SCORE</div>
+                        <div class="bestScore"></div>
+                        <div class="bestScoreAnimator"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gridContainerOuter">
+            <div class="gridContainerInner">
+                <div class="backgroundGrid"></div>
+                <div class="mainGrid"></div>
+            </div>
+            <div id="gameOverContainer" class="gameOver">
+                <div class="game-over-title">Game Over!</div>
+                <button class="tryAgain">Try again</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="build/game.js"></script>
+</body>
+</html>

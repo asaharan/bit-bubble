@@ -1,0 +1,190 @@
+@import "../com/bourbon/bourbon"
+$roboto-font-path: "../build/fonts"
+@import "../com/roboto-fontface/css/roboto-fontface"
+@import "variables"
+@import "base"
+.gameContainer
+  display: inline-block
+  text-align: left
+  margin: 20px 0
+  *,*:after,*:before
+    font-family: 'roboto-regular'
+    box-sizing: border-box
+
+  .header
+    margin-bottom: 5px
+    .scores
+      display: none
+    .nameAndDescription
+      .first
+        line-height: 40px
+        font-size: 16px
+        .name
+          font-size: 24px
+          font-weight: bold
+          display: inline-block
+        .right_options
+          display: inline-block
+          float: right
+          .level
+            display: inline-block
+            float: left
+            width: 80px
+            text-align: center
+            border: 1px solid #c0c8c9
+            background-color: #fff
+            height: 30px
+            color: #777
+            margin-right: 20px
+            border-radius: 2px
+            outline: none
+            option
+              color: #777
+            &:focus,&:hover
+              border-color: #FF4E47
+              color: #FF4E47
+          .newGame
+            cursor: pointer
+            float: left
+            position: relative
+            height: 30px
+            border-radius: 2px
+            outline: none
+            color: #F95E58
+            background: #fff
+            border: solid 1px #FF4E47
+            transition: all ease 300ms
+            &:focus,&:hover
+              background-color: #FF4E47
+              color: #fff
+              border: solid 1px #FF4E47
+        .desc
+          display: block
+          line-height: 22px
+          height: 22px
+          .d
+            display: inline-block
+            float: left
+  .gridContainerOuter
+    background-color: $gridContainerOuterBackgroundColor
+    border: solid $gridContainerOuterBorderWidth $gridContainerOuterBorderColor
+    position: relative
+
+    .gridContainerInner
+      position: absolute
+      left: 0
+      top: 0
+      z-index: 10
+      .backgroundGrid
+        position: absolute
+
+      .mainGrid
+        position: absolute
+        @include user-select(none)
+
+        .tile
+          position: absolute
+          background-color: $tileBackgroundColor
+          color: $tileColor
+          text-align: center
+          border-radius: 3px
+          z-index: 100
+          opacity: 1
+          cursor: pointer
+          @include transition(all $bitAnimationTime/4 ease,z-index $bitAnimationTime ease,opacity $bitAnimationTime ease)
+          &.invisible
+            z-index: -100
+            opacity: 0
+            @include transform(scale(0.9))
+          &.fixed
+            cursor: default
+            background-color: $fixedTileColor
+            color: #ffffff
+            z-index: 505
+          &.updated
+            z-index: 500
+            @include transform(scale(1.2))
+
+        .bit
+          position: absolute
+          background-color: $bitBackgroundColor
+          color: $bitColor
+          text-align: center
+          z-index: -5
+          opacity: 0.86
+          @include transform(scale(0.5))
+          @include transition(none)
+          &.transition
+            @include transition(all $bitAnimationTime ease-in, z-index $bitAnimationTime/5 linear)
+          &.left
+            // border-radius: 50% 10% 10% 50%
+          &.right
+            // border-radius: 10% 50% 50% 10%
+          &.up
+            // border-radius: 50% 50% 10% 10%
+          &.down
+            // border-radius: 10% 10% 50% 50%
+          &.visible
+            // border-radius: 50%
+            @include transform(scale(0.7))
+            z-index: 5
+          &.invisible
+            z-index: -5
+            background-color: transparent
+            color: transparent
+          &.destroy-1
+            top: -120px
+          &.destroy-2
+            left: calc(100% + 120px)
+          &.destroy-3
+            top: calc(100% + 120px)
+          &.destroy-4
+            left: -120px
+
+
+
+
+
+.gameOver
+  position: absolute
+  top: 0
+  left: 0
+  bottom: 0
+  right: 0
+  background: rgba(238, 228, 218, 0.73)
+  z-index: 1
+  @include display(flex)
+  @include flex-direction(column)
+  @include justify-content(center)
+  @include align-items(center)
+  z-index: -5
+  visibility: hidden
+  &.open
+    visibility: visible
+    z-index: 100
+    button,.game-over-title
+      @include transform(none)
+      opacity: 1
+  button
+    border: none
+    color: #fff
+    background: #8f7a66
+    font-weight: bold
+    padding: 0 24px
+    border-radius: 3px
+    line-height: 42px
+    font-size: 14px
+    text-transform: uppercase
+    align-self: center
+    cursor: pointer
+    @include transition(all ease 550ms 100ms)
+    @include transform(translateY(240px))
+    opacity: 0
+
+  .game-over-title
+    font-size: 40px
+    margin-bottom: 12px
+    font-weight: bold
+    @include transition(all ease 400ms)
+    @include transform(translateY(200px))
+    opacity: 0

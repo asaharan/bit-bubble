@@ -1,0 +1,28 @@
+{
+  "name": "Bit Bubble",
+  "version": "0.0.0",
+  "authors": [
+    "Amit Saharan <asaharan812@gmail.com>"
+  ],
+  "description": "a game",
+  "main": "index.html",
+  "keywords": [
+    "Bubble",
+    "flow",
+    "game",
+    "amit",
+    "saharan"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "com",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "roboto-fontface": "~0.4.3"
+  }
+}
