@@ -179,6 +179,7 @@ function GameManager(gridManager,styleSheetManager,bitManager,masterLogic){
     this.init();
     this.xbitManager=bitManager;
     this.xgridManager=gridManager;
+    window.scoreManager = new Score();
 }
 GameManager.prototype.init= function () {
     console.log(document.querySelector('.tryAgain'));
@@ -188,6 +189,7 @@ GameManager.prototype.init= function () {
     this.bitManager.on('mergeComplete',this.onMerge.bind(this));
 };
 GameManager.prototype.restart= function () {
+    scoreManager = new Score();
     document.getElementById('gameOverContainer').setAttribute('class','gameOver');
     var self=this;
     self.gridManager=null;
@@ -224,6 +226,7 @@ GameManager.prototype.onMerge= function (mergeDetails) {//this will called from 
     var tileToBeUpdated=this.gridManager.findTileByPosition(mergeDetails.position);
     tileToBeUpdated.nextValue=tileToBeUpdated.value+mergeDetails.valueTobeAdded;
     this.gridManager.applyChanges();
+    scoreManager.updateScore(this.gridManager.currentScore());
     if(this.gridManager.isGameOver()){
         //Game Over
         setTimeout(function(){
@@ -231,7 +234,56 @@ GameManager.prototype.onMerge= function (mergeDetails) {//this will called from 
         },300);
     }
 
-};;
+};
+
+function Score(){
+    this.defaultScore = 512;
+    this.localStorageBestScoreName = 'bit-bubble-high-score-object';
+    this.size = size;
+    this.currentScoreHTMLNode = document.querySelector('.currentScore');
+    this.bestScoreHTMLNode = document.querySelector('.bestScore');
+    this.currentScore = this.defaultScore;
+    this.max = window.localStorage.getItem('bit-bubble-high-score') || 512;
+    this.max = this.getBestScore();
+    this.applyChanges();
+}
+Score.prototype.getBestScore = function(size){
+    size = size || this.size;
+    var v = JSON.parse(window.localStorage.getItem(this.localStorageBestScoreName));
+    if(v==null){
+        return this.defaultScore;
+    }
+    return v[size] || this.defaultScore;
+}
+Score.prototype.setBestScore = function(max,size){
+    max = max || this.max;
+    size = size || this.size;
+    var v = JSON.parse(window.localStorage.getItem(this.localStorageBestScoreName));
+    if(v==null){
+        v={};
+    }
+    v[size] = max;
+    window.localStorage.setItem(this.localStorageBestScoreName, JSON.stringify(v));
+}
+Score.prototype.updateScore = function(currentScore){
+    if(typeof currentScore != 'number'){
+        return;
+    }
+    this.currentScore = currentScore;
+    if(this.max < this.currentScore){
+        this.max = this.currentScore;
+        // window.localStorage.setItem('bit-bubble-high-score',this.max);
+        //apply changed to bestScore
+        this.setBestScore();
+    }
+    this.applyChanges();
+}
+Score.prototype.applyChanges = function(){
+    this.bestScoreHTMLNode.innerHTML = this.max;
+    this.currentScoreHTMLNode.innerHTML = this.currentScore;
+
+    //apply changed to currentScore
+};
 /*!
  * js/grid_manager.js
 */
@@ -406,6 +458,10 @@ Grid.prototype.isGameOver = function(){
     console.log('findNextTile fixedTile down',this.findNextTile(this.fixedTile.position(),[directions.down] ));
     console.log('findNextTile fixedTile up',this.findNextTile(this.fixedTile.position(),[directions.up] ));
     // console.log(this.fixedTile);  
+}
+
+Grid.prototype.currentScore = function(){
+    return this.fixedTile.value;
 };
 /*!
  * js/master_logic.js

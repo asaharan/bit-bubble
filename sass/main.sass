@@ -14,7 +14,18 @@ $roboto-font-path: "../build/fonts"
   .header
     margin-bottom: 5px
     .scores
-      display: none
+      @include display(flex)
+      @include justify-content(space-between)
+      .scoreContainer
+        display: inline-block
+        border: solid 1px #ff4e47
+        padding: 4px 24px
+        color: #ff4e47
+        font-size: 14px
+        border-radius: 2px
+        margin: 8px 0
+        min-width: 120px
+        text-align: center
     .nameAndDescription
       .first
         line-height: 40px

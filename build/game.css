@@ -135,7 +135,32 @@ body {
   .gameContainer .header {
     margin-bottom: 5px; }
     .gameContainer .header .scores {
-      display: none; }
+      display: -webkit-box;
+      display: -moz-box;
+      display: box;
+      display: -webkit-flex;
+      display: -moz-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -moz-box-pack: justify;
+      box-pack: justify;
+      -webkit-justify-content: space-between;
+      -moz-justify-content: space-between;
+      -ms-justify-content: space-between;
+      -o-justify-content: space-between;
+      justify-content: space-between;
+      -ms-flex-pack: justify; }
+      .gameContainer .header .scores .scoreContainer {
+        display: inline-block;
+        border: solid 1px #ff4e47;
+        padding: 4px 24px;
+        color: #ff4e47;
+        font-size: 14px;
+        border-radius: 2px;
+        margin: 8px 0;
+        min-width: 120px;
+        text-align: center; }
     .gameContainer .header .nameAndDescription .first {
       line-height: 40px;
       font-size: 16px; }

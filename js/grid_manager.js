@@ -170,3 +170,7 @@ Grid.prototype.isGameOver = function(){
     console.log('findNextTile fixedTile up',this.findNextTile(this.fixedTile.position(),[directions.up] ));
     // console.log(this.fixedTile);  
 }
+
+Grid.prototype.currentScore = function(){
+    return this.fixedTile.value;
+}
