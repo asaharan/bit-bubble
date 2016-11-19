@@ -122,7 +122,8 @@ body {
   background-color: #fff;
   color: #777;
   text-align: center;
-  overflow-y: scroll; }
+  overflow-y: scroll;
+  margin: 8px; }
 
 .gameContainer {
   display: inline-block;

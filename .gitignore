@@ -3,3 +3,4 @@ com/*
 .idea/*
 .sass-cache/
 npm-debug.log
+*.css.map
