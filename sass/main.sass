@@ -24,7 +24,7 @@ $roboto-font-path: "../build/fonts"
         font-size: 14px
         border-radius: 2px
         margin: 8px 0
-        min-width: 120px
+        min-width: 156px
         text-align: center
     .nameAndDescription
       .first
@@ -102,6 +102,7 @@ $roboto-font-path: "../build/fonts"
           z-index: 100
           opacity: 1
           cursor: pointer
+          -webkit-tap-highlight-color: rgba(0,0,0,0)
           @include transition(all $bitAnimationTime/4 ease,z-index $bitAnimationTime ease,opacity $bitAnimationTime ease)
           &.invisible
             z-index: -100

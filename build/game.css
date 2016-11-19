@@ -159,7 +159,7 @@ body {
         font-size: 14px;
         border-radius: 2px;
         margin: 8px 0;
-        min-width: 120px;
+        min-width: 156px;
         text-align: center; }
     .gameContainer .header .nameAndDescription .first {
       line-height: 40px;
@@ -236,6 +236,7 @@ body {
           z-index: 100;
           opacity: 1;
           cursor: pointer;
+          -webkit-tap-highlight-color: transparent;
           -webkit-transition: all 100ms ease, z-index 400ms ease, opacity 400ms ease;
           -moz-transition: all 100ms ease, z-index 400ms ease, opacity 400ms ease;
           transition: all 100ms ease, z-index 400ms ease, opacity 400ms ease; }
