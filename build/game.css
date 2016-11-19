@@ -239,6 +239,7 @@ body {
           text-align: center;
           z-index: -5;
           opacity: 0.86;
+          visibility: hidden;
           -webkit-transform: scale(0.5);
           -moz-transform: scale(0.5);
           -ms-transform: scale(0.5);
@@ -257,7 +258,8 @@ body {
             -ms-transform: scale(0.7);
             -o-transform: scale(0.7);
             transform: scale(0.7);
-            z-index: 5; }
+            z-index: 5;
+            visibility: visible; }
           .gameContainer .gridContainerOuter .gridContainerInner .mainGrid .bit.invisible {
             z-index: -5;
             background-color: transparent;
