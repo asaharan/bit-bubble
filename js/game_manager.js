@@ -1,3 +1,18 @@
+function handleNewGame(){
+    ga('send', 'event', {
+        eventCategory: 'Game',
+        eventAction: 'New game',
+        eventLabel:size,
+      });
+}
+function handleRestartGame(){
+    ga('send', 'event', {
+        eventCategory: 'Game',
+        eventAction: 'Restart',
+        eventLabel:size,
+      });
+    handleNewGame();
+}
 function GameManager(gridManager,styleSheetManager,bitManager,masterLogic){
     this.gridManager=new gridManager;
     this.styleSheetManager=new styleSheetManager;
@@ -7,6 +22,7 @@ function GameManager(gridManager,styleSheetManager,bitManager,masterLogic){
     this.xbitManager=bitManager;
     this.xgridManager=gridManager;
     window.scoreManager = new Score();
+    handleNewGame();
 }
 GameManager.prototype.init= function () {
     console.log(document.querySelector('.tryAgain'));
@@ -28,7 +44,8 @@ GameManager.prototype.restart= function () {
         self.bitManager=new self.xbitManager;
         self.gridManager.on('tileClick',self.play.bind(self));
         self.bitManager.on('mergeComplete',self.onMerge.bind(self));
-    })
+    });
+    handleRestartGame();
 };
 GameManager.prototype.play=function(clickedTile){
     var self=this;
